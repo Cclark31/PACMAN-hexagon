@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Pacdot : MonoBehaviour {
+public class Pacdot2 : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
@@ -14,7 +14,7 @@ public class Pacdot : MonoBehaviour {
 
 		    if (pacdots.Length == 1)
 		    {
-				SceneManager.LoadScene("game 2");
+				SceneManager.LoadScene("game 3");
 		    }
 		}
 	}
