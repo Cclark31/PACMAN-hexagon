@@ -158,15 +158,15 @@ public class AI : MonoBehaviour {
 		}
 	}
 
-
-	TileManager.Tile GetTargetTilePerGhost()
+	//Courtney Clark
+	virtual public TileManager.Tile GetTargetTilePerGhost()
 	{
 		Vector3 targetPos;
 		TileManager.Tile targetTile;
 		Vector3 dir;
 
 		// get the target tile position (round it down to int so we can reach with Index() function)
-		switch(name)
+		 switch(name)
 		{
 		case "blinky":	// target = pacman
 			targetPos = new Vector3 (target.position.x+0.499f, target.position.y+0.499f);
