@@ -9,10 +9,12 @@ public class GhostMove : MonoBehaviour {
     // Navigation variables
 	private Vector3 waypoint;			// AI-determined waypoint
 	private Queue<Vector3> waypoints;	// waypoints used on Init and Scatter states
-
+	// public float variable created to allow for different frighten speed changes in each level by altering it in the inspector
+	public float frightenchange = 0.5f;
 	// direction is set from the AI component
 	public Vector3 _direction;
-	public Vector3 direction 
+	public Vector3 direction
+
 	{
 		get
 		{
@@ -421,8 +423,8 @@ public class GhostMove : MonoBehaviour {
 	{
 		state = State.Run;
 		_direction *= -1;
-
-        _timeToWhite = Time.time + _gm.scareLength * 0.66f;
+		//Constant (0.66f) replaced with variable to allow for difference between levels.
+		_timeToWhite = Time.time + _gm.scareLength * frightenchange;
         _timeToToggleWhite = _timeToWhite;
         GetComponent<Animator>().SetBool("Run_White", false);
 
