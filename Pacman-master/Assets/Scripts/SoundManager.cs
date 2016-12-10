@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+//script by Jessie Cox
 public class SoundManager : MonoBehaviour {
 
 	//The Audio source variable
@@ -36,7 +36,7 @@ public class SoundManager : MonoBehaviour {
 
 
 	void Awake () {
-		
+
 		coinSounds = Resources.LoadAll<AudioClip>("Sounds");
 		gohstSounds = Resources.LoadAll<AudioClip>("Sounds");
 		clickSounds = Resources.LoadAll<AudioClip>("Sounds");
@@ -54,7 +54,7 @@ public class SoundManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
 
