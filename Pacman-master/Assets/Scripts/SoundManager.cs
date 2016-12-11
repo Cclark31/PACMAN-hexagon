@@ -5,25 +5,28 @@ public class SoundManager : MonoBehaviour {
 
 	//The Audio source variable
 	AudioSource  myAudioSource;
+
 	//the audio clip variable that changes depending on what we collide with
 	AudioClip audioToPlay;
-	GameObject objectForAudio;
-	bool destroyAudioSource;
+
+
+
+	public GameObject objectForAudio;
+	public GameObject MouseAudio;
+
+
 
 
 	public float amp = 1f;
 
 
 	//the game objects "coin" and "gohst"
-	public GameObject coin;
+
 	public GameObject gohst;
 
 
 	//audio array with all coin sounds
 	static public AudioClip[] coinSounds;
-
-	//audio array with all gohst sounds
-	static public AudioClip[] gohstSounds;
 
 
 	//audio array with all mouse click sounds
@@ -32,23 +35,23 @@ public class SoundManager : MonoBehaviour {
 
 
 	//bool for playing theme music
-	public bool themeMusic = true;
+
 
 
 	void Awake () {
 
-		coinSounds = Resources.LoadAll<AudioClip>("Sounds");
-		gohstSounds = Resources.LoadAll<AudioClip>("Sounds");
+		coinSounds = Resources.LoadAll<AudioClip>("chomp");
+	
 		clickSounds = Resources.LoadAll<AudioClip>("Sounds");
-
-
 
 	}
 
 	//to make a sound when the mouse is being clicked
-	void OnMouseDown(){
-		audioToPlay = clickSounds [Random.Range (0, coinSounds.Length)];
-		PlayAudio ();
+	void OnGUI(){
+		Event e = Event.current;
+		if (e.isMouse) {
+			MouseAudio.GetComponent<AudioSource> ().Play ();
+		}
 	}
 
 
@@ -58,19 +61,28 @@ public class SoundManager : MonoBehaviour {
 	}
 
 
-	void OnCollisionEnter (Collision col)
+	void OnTriggerEnter2D (Collider2D col)
 	{
-		if(col.gameObject.tag == "coin")
+		if(col.gameObject.tag == "pacdot")
 		{
 
 			audioToPlay = coinSounds [Random.Range (0, coinSounds.Length)];
-			PlayAudio ();
+			myAudioSource = objectForAudio.GetComponent<AudioSource> ();
+			myAudioSource.clip = audioToPlay;
+			myAudioSource.Play ();
+
+
 		}
 
 		if(col.gameObject.tag == "gohst")
 		{
-			audioToPlay = gohstSounds [Random.Range (0, gohstSounds.Length)];
-			PlayAudio ();
+			if (GameManager.scared == true) {
+
+				GetComponent<AudioSource> ().Play ();
+			}
+			else{
+			gohst.GetComponent<AudioSource>().Play();
+			}
 		}
 
 
@@ -90,10 +102,9 @@ public class SoundManager : MonoBehaviour {
 
 
 
-	void PlayAudio(){
+	/*void PlayAudio(){
 
-	if (objectForAudio.GetComponent<AudioSource>() == null) {
-		//we can instantiate an audiosource on any object at runtime if needed
+	
 		myAudioSource = objectForAudio.AddComponent<AudioSource> ();
 		myAudioSource.playOnAwake = false;
 
@@ -114,5 +125,5 @@ public class SoundManager : MonoBehaviour {
 	if (destroyAudioSource) {
 		Destroy (myAudioSource, audioToPlay.length);
 	}
-}
+}*/
 }
