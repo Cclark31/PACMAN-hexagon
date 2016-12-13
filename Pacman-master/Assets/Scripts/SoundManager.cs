@@ -10,17 +10,15 @@ public class SoundManager : MonoBehaviour {
 	AudioClip audioToPlay;
 
 
-
+	//game objects that hold the sound
 	public GameObject objectForAudio;
 	public GameObject MouseAudio;
 
 
 
 
-	public float amp = 1f;
 
-
-	//the game objects "coin" and "gohst"
+	//the game object "gohst"
 
 	public GameObject gohst;
 
@@ -34,16 +32,11 @@ public class SoundManager : MonoBehaviour {
 
 
 
-	//bool for playing theme music
-
-
 
 	void Awake () {
-
+		//load sound into array
 		coinSounds = Resources.LoadAll<AudioClip>("chomp");
 	
-		clickSounds = Resources.LoadAll<AudioClip>("Sounds");
-
 	}
 
 	//to make a sound when the mouse is being clicked
@@ -60,13 +53,13 @@ public class SoundManager : MonoBehaviour {
 
 	}
 
-
+	//play sound on collision with pacdots
 	void OnTriggerEnter2D (Collider2D col)
 	{
 		if(col.gameObject.tag == "pacdot")
 		{
 
-
+			//play a random sound out of the folder
 			audioToPlay = coinSounds [Random.Range (0, coinSounds.Length)];
 			myAudioSource = objectForAudio.GetComponent<AudioSource> ();
 			myAudioSource.clip = audioToPlay;
@@ -74,11 +67,11 @@ public class SoundManager : MonoBehaviour {
 
 
 		}
-
+		//on collision with gohst play sound
 		if(col.gameObject.tag == "gohst")
 		{
 			if (GameManager.scared == true) {
-
+				//different sound if gohst is scared and pacman can eat them
 				GetComponent<AudioSource> ().Play ();
 			}
 			else{
@@ -90,41 +83,4 @@ public class SoundManager : MonoBehaviour {
 }
 
 
-	//randomise Amplitude
-
-	/*void PlayRandomPitchAndVolume()
-	{
-		//Pitch and Amplitude Randomization.
-		amp = Random.Range(0.9f, 1.1f);
-		GetComponent<AudioSource>().volume = amp;
-		GetComponent<AudioSource>().Play();
-	}
-*/
-
-
-
-	/*void PlayAudio(){
-
-	
-		myAudioSource = objectForAudio.AddComponent<AudioSource> ();
-		myAudioSource.playOnAwake = false;
-
-		//if we add this component, we should destroy it when we finish
-		destroyAudioSource = true;
-	} else {
-		myAudioSource = objectForAudio.GetComponent<AudioSource> ();
-		//			existingAudioClip = myAudioSource.clip;
-		destroyAudioSource = false;
-	}
-	myAudioSource.clip = audioToPlay;
-	myAudioSource.Play ();
-	//		if (existingAudioClip != null) {
-	//			myAudioSource.clip = existingAudioClip;
-	//		}
-
-	//we will wait for the audioclip to finish playing before destroying, we could also use PlayOneShot instead
-	if (destroyAudioSource) {
-		Destroy (myAudioSource, audioToPlay.length);
-	}
-}*/
 }
