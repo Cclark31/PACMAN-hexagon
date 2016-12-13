@@ -186,6 +186,15 @@ public class GhostMove : MonoBehaviour {
 10 8";
             break;
         
+		case "jmc":
+			data = @"17.5 20
+22 26
+
+27 26
+27 30
+22 30
+22 26";
+			break;
         }
 
         //-------------------------------------------------
@@ -278,6 +287,9 @@ public class GhostMove : MonoBehaviour {
 
             case "clyde":
                 return new Vector3(12.5f, 17f, 0f);
+		
+			case "jmc":
+				return new Vector3(12.5f, 20f, 0f);
         }
 
         return new Vector3();
