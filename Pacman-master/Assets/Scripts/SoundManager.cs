@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-
-//script by Jessie Cox Decmeber 2016
-//for Unity Pacman Project team Hexagon, Logic and Programming in Berklee College of Music
+//script by Jessie Cox
 public class SoundManager : MonoBehaviour {
 
 	//The Audio source variable
@@ -13,15 +10,18 @@ public class SoundManager : MonoBehaviour {
 	AudioClip audioToPlay;
 
 
-//the gameobjects that hold my audiofiles
+
 	public GameObject objectForAudio;
 	public GameObject MouseAudio;
 
 
 
 
+	public float amp = 1f;
 
-	//the game object "gohst"
+
+	//the game objects "coin" and "gohst"
+
 	public GameObject gohst;
 
 
@@ -34,14 +34,14 @@ public class SoundManager : MonoBehaviour {
 
 
 
+	//bool for playing theme music
+
 
 
 	void Awake () {
 
-
-//to load all the sounds when the game is started
 		coinSounds = Resources.LoadAll<AudioClip>("chomp");
-
+	
 		clickSounds = Resources.LoadAll<AudioClip>("Sounds");
 
 	}
@@ -60,13 +60,12 @@ public class SoundManager : MonoBehaviour {
 
 	}
 
-//to make a sound on collision
+
 	void OnTriggerEnter2D (Collider2D col)
 	{
-		//ifcolliding with pacdot
 		if(col.gameObject.tag == "pacdot")
 		{
-//then I play a pacdot sound which is chosen randomly out of the folde loaded on Awake
+
 			audioToPlay = coinSounds [Random.Range (0, coinSounds.Length)];
 			myAudioSource = objectForAudio.GetComponent<AudioSource> ();
 			myAudioSource.clip = audioToPlay;
@@ -74,15 +73,13 @@ public class SoundManager : MonoBehaviour {
 
 
 		}
-//if colliding with a gohst
+
 		if(col.gameObject.tag == "gohst")
 		{
-			//if the gohst is scared/blus then I play one sound
 			if (GameManager.scared == true) {
 
 				GetComponent<AudioSource> ().Play ();
 			}
-			//if the gohst isn't scared I play another sound
 			else{
 			gohst.GetComponent<AudioSource>().Play();
 			}
@@ -91,4 +88,42 @@ public class SoundManager : MonoBehaviour {
 
 }
 
+
+	//randomise Amplitude
+
+	/*void PlayRandomPitchAndVolume()
+	{
+		//Pitch and Amplitude Randomization.
+		amp = Random.Range(0.9f, 1.1f);
+		GetComponent<AudioSource>().volume = amp;
+		GetComponent<AudioSource>().Play();
+	}
+*/
+
+
+
+	/*void PlayAudio(){
+
+	
+		myAudioSource = objectForAudio.AddComponent<AudioSource> ();
+		myAudioSource.playOnAwake = false;
+
+		//if we add this component, we should destroy it when we finish
+		destroyAudioSource = true;
+	} else {
+		myAudioSource = objectForAudio.GetComponent<AudioSource> ();
+		//			existingAudioClip = myAudioSource.clip;
+		destroyAudioSource = false;
+	}
+	myAudioSource.clip = audioToPlay;
+	myAudioSource.Play ();
+	//		if (existingAudioClip != null) {
+	//			myAudioSource.clip = existingAudioClip;
+	//		}
+
+	//we will wait for the audioclip to finish playing before destroying, we could also use PlayOneShot instead
+	if (destroyAudioSource) {
+		Destroy (myAudioSource, audioToPlay.length);
+	}
+}*/
 }
