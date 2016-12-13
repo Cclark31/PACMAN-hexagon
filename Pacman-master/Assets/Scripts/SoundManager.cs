@@ -66,6 +66,7 @@ public class SoundManager : MonoBehaviour {
 		if(col.gameObject.tag == "pacdot")
 		{
 
+
 			audioToPlay = coinSounds [Random.Range (0, coinSounds.Length)];
 			myAudioSource = objectForAudio.GetComponent<AudioSource> ();
 			myAudioSource.clip = audioToPlay;
