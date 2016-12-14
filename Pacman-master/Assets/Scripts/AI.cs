@@ -158,7 +158,7 @@ public class AI : MonoBehaviour {
 		}
 	}
 
-	//Courtney Clark
+
 	virtual public TileManager.Tile GetTargetTilePerGhost()
 	{
 		Vector3 targetPos;
@@ -196,6 +196,35 @@ public class AI : MonoBehaviour {
 			if(manager.distance(targetTile, currentTile) < 9)
 				targetTile = tiles[manager.Index (0, 2)];
 			break;
+
+			//Kyle
+			//I decided to modify the ghost you added to try to add a new twist on the pacman game
+			// Made a scary floating pink box. The box represents the container that holds pacman's soul and souls of its victims.
+		case "kyle":
+
+			targetPos = new Vector3 (2*target.position.x+0.499f, 2*target.position.y+0.499f);
+			targetTile = tiles[manager.Index((int)targetPos.x, (int)targetPos.y)];
+			Vector3 clydePos = GameObject.Find ("blinky").transform.position;
+			targetPos = new Vector3 (target.position.x+0.499f, target.position.y+0.499f);
+		
+
+			break;
+
+			//Courtney Clark
+			//Logic and Programming
+
+			case "courtney":
+			// finds pacman
+			dir = target.GetComponent<PlayerController>().getDir();
+			//get pacman
+			targetPos = new Vector3 (target.position.x+0.499f, target.position.y+0.499f);
+			//follow pinky
+			Vector3 pinkyPos = GameObject.Find ("pinky").transform.position;
+			//go to target tile
+			targetTile = tiles[manager.Index((int)targetPos.x, (int)targetPos.y)];
+
+			break;
+
 		default:
 			targetTile = null;
 			Debug.Log ("TARGET TILE NOT ASSIGNED");

@@ -185,7 +185,35 @@ public class GhostMove : MonoBehaviour {
 10 5
 10 8";
             break;
+
+			//Kyle Stephenson
+		case "kyle":
+			data = @"17.5 20
+22 26
+
+27 26
+27 30
+22 30
+22 26";
+			break;
         
+			//Courtney Clark
+			// if no AI decision can be made on which way to go, the ghost will direct to the next waypoint.
+		case "courtney":
+			data = @"12 20
+
+7 20
+
+7 8
+7 5
+2 5
+2 2
+13 2
+13 5
+10 5
+10 8";
+
+			break;
         }
 
         //-------------------------------------------------
@@ -278,6 +306,10 @@ public class GhostMove : MonoBehaviour {
 
             case "clyde":
                 return new Vector3(12.5f, 17f, 0f);
+
+			//Kyle Stephenson
+		case "kyle":
+			return new Vector3(5f, 2f, 0f);
         }
 
         return new Vector3();

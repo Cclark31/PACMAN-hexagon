@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿//Courtney Clark
+//Logic and Programming
+//Added new ghosts when script references other ghosts.
+
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
@@ -17,6 +21,8 @@ public class GameManager : MonoBehaviour {
     private GameObject pinky;
     private GameObject inky;
     private GameObject clyde;
+	private GameObject kyle;
+	private GameObject courtney;
     private GameGUINavigation gui;
 
 	public static bool scared;
@@ -83,6 +89,8 @@ public class GameManager : MonoBehaviour {
         blinky.GetComponent<GhostMove>().speed += Level * SpeedPerLevel;
         pinky.GetComponent<GhostMove>().speed += Level * SpeedPerLevel;
         inky.GetComponent<GhostMove>().speed += Level * SpeedPerLevel;
+		kyle.GetComponent<GhostMove>().speed += Level * SpeedPerLevel;
+		courtney.GetComponent<GhostMove>().speed += Level * SpeedPerLevel;
         pacman.GetComponent<PlayerController>().speed += Level*SpeedPerLevel/2;
     }
 
@@ -110,12 +118,17 @@ public class GameManager : MonoBehaviour {
 		pinky.transform.position = new Vector3(14.5f, 17f, 0f);
 		inky.transform.position = new Vector3(16.5f, 17f, 0f);
 		clyde.transform.position = new Vector3(12.5f, 17f, 0f);
+		kyle.transform.position = new Vector3(17.5f, 20f, 0f);
+		courtney.transform.position = new Vector3(12f, 20f, 0f);
+
 
 		pacman.GetComponent<PlayerController>().ResetDestination();
 		blinky.GetComponent<GhostMove>().InitializeGhost();
 		pinky.GetComponent<GhostMove>().InitializeGhost();
 		inky.GetComponent<GhostMove>().InitializeGhost();
 		clyde.GetComponent<GhostMove>().InitializeGhost();
+		kyle.GetComponent<GhostMove>().InitializeGhost();
+		courtney.GetComponent<GhostMove>().InitializeGhost();
 
         gameState = GameState.Init;  
         gui.H_ShowReadyScreen();
@@ -135,6 +148,8 @@ public class GameManager : MonoBehaviour {
 		pinky.GetComponent<GhostMove>().Frighten();
 		inky.GetComponent<GhostMove>().Frighten();
 		clyde.GetComponent<GhostMove>().Frighten();
+		kyle.GetComponent<GhostMove>().Frighten();
+		courtney.GetComponent<GhostMove>().Frighten();
 		_timeToCalm = Time.time + scareLength;
 
         Debug.Log("Ghosts Scared");
@@ -147,7 +162,10 @@ public class GameManager : MonoBehaviour {
 		pinky.GetComponent<GhostMove>().Calm();
 		inky.GetComponent<GhostMove>().Calm();
 		clyde.GetComponent<GhostMove>().Calm();
-	    PlayerController.killstreak = 0;
+		kyle.GetComponent<GhostMove>().Calm();
+		courtney.GetComponent<GhostMove>().Calm();
+	    
+		PlayerController.killstreak = 0;
     }
 
     void AssignGhosts()
@@ -157,9 +175,11 @@ public class GameManager : MonoBehaviour {
         pinky = GameObject.Find("pinky");
         inky = GameObject.Find("inky");
         blinky = GameObject.Find("blinky");
+		kyle = GameObject.Find("kyle");
+		courtney = GameObject.Find("courtney");
         pacman = GameObject.Find("pacman");
 
-        if (clyde == null || pinky == null || inky == null || blinky == null) Debug.Log("One of ghosts are NULL");
+		if (clyde == null || pinky == null || inky == null || blinky == null|| kyle == null ||courtney == null) Debug.Log("One of ghosts are NULL");
         if (pacman == null) Debug.Log("Pacman is NULL");
 
         gui = GameObject.FindObjectOfType<GameGUINavigation>();
