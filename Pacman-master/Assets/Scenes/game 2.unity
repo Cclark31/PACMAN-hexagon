@@ -6560,6 +6560,11 @@ Prefab:
       propertyPath: GUINav
       value: 
       objectReference: {fileID: 383257000}
+    - target: {fileID: 114000012084711732, guid: 72fb3f40506e94b2ca6996264392c03e,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 508745663}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72fb3f40506e94b2ca6996264392c03e, type: 2}
   m_IsPrefabParent: 0
@@ -32506,6 +32511,11 @@ Prefab:
       propertyPath: pacman
       value: 
       objectReference: {fileID: 508745664}
+    - target: {fileID: 114000014202523328, guid: 558421e47ce5b49d9b592815784b21c4,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 508745663}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 558421e47ce5b49d9b592815784b21c4, type: 2}
   m_IsPrefabParent: 0
